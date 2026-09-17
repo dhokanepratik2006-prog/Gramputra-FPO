@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Products | Gramputra Jivik Shati Mission Farmer Producer Company Ltd{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <h1>Our Products</h1>
+  </div>
+</section>
+
+<section class="container content-section">
+  <div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+      <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" />
+      <h3>{{ product.name }}</h3>
+      <p class="product-price">₹{{ product.price }}</p>
+      <p>{{ product.description }}</p>
+      <a href="{{ url_for('product_detail', slug=product.slug) }}" class="btn btn-primary">View Details</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

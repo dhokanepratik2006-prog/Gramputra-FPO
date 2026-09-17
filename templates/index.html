@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | NovaWeb{% endblock %}
+{% block title %}Home | Gramputra Jivik Shati Mission Farmar Producer Company Ltd{% endblock %}
 
 {% block content %}
 <section class="hero">
   <div class="container hero-content">
     <div>
-      <p class="eyebrow">Modern digital solutions</p>
-      <h1>Build a professional website with Python.</h1>
+      <p class="eyebrow">Farmer Producer Company</p>
+      <h1>Gramputra Jivik Shati Mission Farmer Producer Company Ltd</h1>
       <p class="lead">
-        Create faster, smarter, and more polished web experiences with Flask and a clean design.
+        Empowering farmers, strengthening rural livelihoods, and building a sustainable agricultural future through collective growth, innovation, and fair market access.
       </p>
       <div class="hero-buttons">
-        <a class="btn btn-primary" href="{{ url_for('about') }}">Learn More</a>
+        <a class="btn btn-primary" href="{{ url_for('products') }}">View Products</a>
         <a class="btn btn-secondary" href="{{ url_for('contact') }}">Contact Us</a>
       </div>
     </div>
     <div class="hero-card">
-      <h3>Why choose us?</h3>
+      <h3>Our Mission</h3>
       <ul>
-        <li>Fast development</li>
-        <li>Clean responsive design</li>
-        <li>SEO-friendly structure</li>
+        <li>Support farmer prosperity</li>
+        <li>Promote sustainable agriculture</li>
+        <li>Improve market access and income</li>
       </ul>
     </div>
   </div>
@@ -29,16 +29,32 @@
 
 <section class="features container">
   <div class="feature-box">
-    <h3>Web Design</h3>
-    <p>Creative layouts that look great on desktop and mobile devices.</p>
+    <h3>Our Focus</h3>
+    <p>Building farmer-centered solutions that improve productivity, supply chains, and rural economic growth.</p>
   </div>
   <div class="feature-box">
-    <h3>Development</h3>
-    <p>Robust backend logic and clean Python-powered application flow.</p>
+    <h3>Our Values</h3>
+    <p>Trust, collective action, sustainability, and transparency in every step of our agricultural journey.</p>
   </div>
   <div class="feature-box">
-    <h3>Support</h3>
-    <p>Friendly guidance to help your business grow online.</p>
+    <h3>Our Impact</h3>
+    <p>Helping producers gain stronger market linkage, better opportunities, and long-term financial stability.</p>
+  </div>
+</section>
+
+<section class="container product-showcase">
+  <div class="section-heading">
+    <h2>Featured Products</h2>
+  </div>
+
+  <div class="product-grid">
+    {% for product in products %}
+    <a href="{{ url_for('product_detail', slug=product.slug) }}" class="product-card">
+      <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" />
+      <h3>{{ product.name }}</h3>
+      <p class="product-price">₹{{ product.price }}</p>
+    </a>
+    {% endfor %}
   </div>
 </section>
 {% endblock %}

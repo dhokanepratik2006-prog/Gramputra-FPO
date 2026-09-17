@@ -1,7 +1,8 @@
 :root {
-  --primary: #1f6feb;
-  --primary-dark: #174ea6;
-  --bg: #f5f7fb;
+  --primary: #1e7a3d;
+  --primary-dark: #14552d;
+  --accent: #f3c84a;
+  --bg: #f4f9f2;
   --text: #1d2433;
   --muted: #5d6b82;
   --card: #ffffff;
@@ -42,14 +43,16 @@ body {
 }
 
 .brand {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--primary-dark);
+  max-width: 420px;
 }
 
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -60,7 +63,7 @@ body {
 
 .hero {
   padding: 5rem 0 4rem;
-  background: linear-gradient(135deg, #eef4ff 0%, #f8fbff 100%);
+  background: linear-gradient(135deg, #edf9ee 0%, #f9fff7 100%);
 }
 
 .hero-content {
@@ -126,7 +129,8 @@ h1 {
 .info-card,
 .contact-info,
 .contact-form,
-.feature-box {
+.feature-box,
+.product-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -155,7 +159,7 @@ h1 {
 }
 
 .page-banner {
-  background: #eaf1ff;
+  background: linear-gradient(135deg, #ebf7ec 0%, #f7f9ef 100%);
   padding: 4rem 0 2rem;
 }
 
@@ -197,11 +201,78 @@ h1 {
   font-size: 1rem;
 }
 
+.product-showcase {
+  padding-bottom: 4rem;
+}
+
+.section-heading {
+  margin-bottom: 1.5rem;
+}
+
+.section-heading h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f3f5ef;
+}
+
+.product-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.product-price {
+  color: var(--primary-dark);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.product-detail-image img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 20px;
+  background: #eef5ef;
+  border: 1px solid var(--border);
+}
+
+.product-detail-info ul {
+  padding-left: 1.2rem;
+}
+
 @media (max-width: 768px) {
   .hero-content,
   .features,
   .two-column,
-  .contact-wrap {
+  .contact-wrap,
+  .product-grid,
+  .product-detail {
     grid-template-columns: 1fr;
   }
 
@@ -211,7 +282,6 @@ h1 {
   }
 
   .nav-links {
-    flex-wrap: wrap;
     justify-content: center;
   }
 }

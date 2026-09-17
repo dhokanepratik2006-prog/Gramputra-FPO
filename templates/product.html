@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} | Gramputra Jivik Shati Mission Farmer Producer Company Ltd{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <h1>{{ product.name }}</h1>
+  </div>
+</section>
+
+<section class="container content-section">
+  <div class="product-detail">
+    <div class="product-detail-image">
+      <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}" />
+    </div>
+    <div class="product-detail-info">
+      <h2>{{ product.name }}</h2>
+      <p class="product-price">₹{{ product.price }}</p>
+      <p>{{ product.description }}</p>
+      <ul>
+        <li>Net Weight: {{ product.weight }}</li>
+        <li>Packaging: {{ product.packaging }}</li>
+        <li>Producer: Gramputra Jivik Shati Mission Farmer Producer Company Ltd</li>
+      </ul>
+      <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact for Order</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
