@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | NovaWeb{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container hero-content">
+    <div>
+      <p class="eyebrow">Modern digital solutions</p>
+      <h1>Build a professional website with Python.</h1>
+      <p class="lead">
+        Create faster, smarter, and more polished web experiences with Flask and a clean design.
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="{{ url_for('about') }}">Learn More</a>
+        <a class="btn btn-secondary" href="{{ url_for('contact') }}">Contact Us</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Why choose us?</h3>
+      <ul>
+        <li>Fast development</li>
+        <li>Clean responsive design</li>
+        <li>SEO-friendly structure</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="features container">
+  <div class="feature-box">
+    <h3>Web Design</h3>
+    <p>Creative layouts that look great on desktop and mobile devices.</p>
+  </div>
+  <div class="feature-box">
+    <h3>Development</h3>
+    <p>Robust backend logic and clean Python-powered application flow.</p>
+  </div>
+  <div class="feature-box">
+    <h3>Support</h3>
+    <p>Friendly guidance to help your business grow online.</p>
+  </div>
+</section>
+{% endblock %}

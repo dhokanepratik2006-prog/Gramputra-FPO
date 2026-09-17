@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact | NovaWeb{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <h1>Contact Us</h1>
+  </div>
+</section>
+
+<section class="container content-section">
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h3>Get in touch</h3>
+      <p>Email: hello@novaweb.com</p>
+      <p>Phone: +1 (555) 123-4567</p>
+      <p>Location: New York, USA</p>
+    </div>
+
+    <form class="contact-form">
+      <label>
+        Name
+        <input type="text" placeholder="Your name" />
+      </label>
+      <label>
+        Email
+        <input type="email" placeholder="Your email" />
+      </label>
+      <label>
+        Message
+        <textarea rows="5" placeholder="Write your message"></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
