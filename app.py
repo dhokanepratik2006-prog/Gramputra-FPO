@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from flask import Flask, render_template, request
+from flask import Flask, abort, render_template, request
 
 app = Flask(__name__)
 
@@ -97,7 +97,7 @@ def contact():
 
 @app.route('/messages')
 def messages_page():
-    return render_template('messages.html', messages=load_messages())
+    abort(404)
 
 
 @app.route('/products')
