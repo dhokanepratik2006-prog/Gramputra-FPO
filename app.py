@@ -72,7 +72,7 @@ def send_contact_email(name, sender_email, message):
     smtp_port = int(os.getenv("SMTP_PORT", "465"))
     smtp_username = os.getenv("SMTP_USERNAME")
     smtp_password = os.getenv("SMTP_PASSWORD")
-    recipient_email = os.getenv("CONTACT_EMAIL", smtp_username)
+    recipient_email = os.getenv("CONTACT_EMAIL", "pratikdhokane623@gmail.com")
 
     if not smtp_username or not smtp_password or not recipient_email:
         return False
