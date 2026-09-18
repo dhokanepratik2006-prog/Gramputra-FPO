@@ -34,6 +34,11 @@
       <button type="submit" class="btn btn-primary">Send Message</button>
       {% if success %}
         <p class="success-message">Your message has been sent successfully.</p>
+        {% if email_sent %}
+          <p class="success-message">We have also sent it to the company email.</p>
+        {% else %}
+          <p class="success-message">The message was saved. Email delivery is not configured yet.</p>
+        {% endif %}
       {% endif %}
     </form>
   </div>

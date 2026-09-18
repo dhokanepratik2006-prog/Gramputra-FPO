@@ -1,4 +1,7 @@
 import json
+import os
+import smtplib
+from email.message import EmailMessage
 from pathlib import Path
 
 from flask import Flask, abort, render_template, request
@@ -64,6 +67,34 @@ def save_messages(messages):
         json.dump(messages, file, ensure_ascii=False, indent=2)
 
 
+def send_contact_email(name, sender_email, message):
+    smtp_host = os.getenv("SMTP_HOST", "smtp.gmail.com")
+    smtp_port = int(os.getenv("SMTP_PORT", "465"))
+    smtp_username = os.getenv("SMTP_USERNAME")
+    smtp_password = os.getenv("SMTP_PASSWORD")
+    recipient_email = os.getenv("CONTACT_EMAIL", smtp_username)
+
+    if not smtp_username or not smtp_password or not recipient_email:
+        return False
+
+    email_message = EmailMessage()
+    email_message["Subject"] = "New website contact message"
+    email_message["From"] = smtp_username
+    email_message["To"] = recipient_email
+    email_message["Reply-To"] = sender_email
+    email_message.set_content(
+        f"Name: {name}\nEmail: {sender_email}\n\nMessage:\n{message}"
+    )
+
+    try:
+        with smtplib.SMTP_SSL(smtp_host, smtp_port, timeout=15) as server:
+            server.login(smtp_username, smtp_password)
+            server.send_message(email_message)
+        return True
+    except (OSError, smtplib.SMTPException, ValueError):
+        return False
+
+
 @app.route('/')
 def home():
     return render_template('index.html', products=PRODUCTS)
@@ -77,6 +108,7 @@ def about():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     success = False
+    email_sent = False
     if request.method == 'POST':
         name = request.form.get('name', '').strip()
         email = request.form.get('email', '').strip()
@@ -90,9 +122,10 @@ def contact():
                 'message': message,
             })
             save_messages(messages)
+            email_sent = send_contact_email(name, email, message)
             success = True
 
-    return render_template('contact.html', success=success)
+    return render_template('contact.html', success=success, email_sent=email_sent)
 
 
 @app.route('/messages')
