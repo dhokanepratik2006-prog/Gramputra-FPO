@@ -1,6 +1,12 @@
-from flask import Flask, render_template
+import json
+from pathlib import Path
+
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
+
+BASE_DIR = Path(__file__).resolve().parent
+MESSAGES_FILE = BASE_DIR / "messages.json"
 
 PRODUCTS = [
     {
@@ -42,6 +48,22 @@ PRODUCTS = [
 ]
 
 
+def load_messages():
+    if not MESSAGES_FILE.exists():
+        return []
+    try:
+        with MESSAGES_FILE.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        return data if isinstance(data, list) else []
+    except (json.JSONDecodeError, OSError):
+        return []
+
+
+def save_messages(messages):
+    with MESSAGES_FILE.open("w", encoding="utf-8") as file:
+        json.dump(messages, file, ensure_ascii=False, indent=2)
+
+
 @app.route('/')
 def home():
     return render_template('index.html', products=PRODUCTS)
@@ -52,9 +74,30 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')
+    success = False
+    if request.method == 'POST':
+        name = request.form.get('name', '').strip()
+        email = request.form.get('email', '').strip()
+        message = request.form.get('message', '').strip()
+
+        if name and email and message:
+            messages = load_messages()
+            messages.append({
+                'name': name,
+                'email': email,
+                'message': message,
+            })
+            save_messages(messages)
+            success = True
+
+    return render_template('contact.html', success=success)
+
+
+@app.route('/messages')
+def messages_page():
+    return render_template('messages.html', messages=load_messages())
 
 
 @app.route('/products')

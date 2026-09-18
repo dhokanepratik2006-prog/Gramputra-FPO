@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Submitted Messages | Gramputra Jivik Shati Mission Farmar Producer Company Ltd{% endblock %}
+
+{% block content %}
+<section class="page-banner">
+  <div class="container">
+    <h1>Submitted Messages</h1>
+  </div>
+</section>
+
+<section class="container content-section">
+  {% if messages %}
+    {% for item in messages %}
+      <div class="message-card">
+        <h3>{{ item.name }}</h3>
+        <p><strong>Email:</strong> {{ item.email }}</p>
+        <p><strong>Message:</strong> {{ item.message }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No messages have been submitted yet.</p>
+  {% endif %}
+</section>
+{% endblock %}

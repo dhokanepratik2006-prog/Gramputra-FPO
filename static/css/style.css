@@ -201,6 +201,21 @@ h1 {
   font-size: 1rem;
 }
 
+.success-message {
+  color: var(--primary-dark);
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.message-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
 .product-showcase {
   padding-bottom: 4rem;
 }
